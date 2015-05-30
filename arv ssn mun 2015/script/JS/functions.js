@@ -105,6 +105,114 @@ function rotateH1() {
 // sub nav hover function
 function subnav(e, t, o) {
     var n = e.find("li").length;
+	var navWidth=177;
+	if (o<=150){
+		navWidth=177;
+		}
+		else{
+			navWidth=120;
+			}
+    switch ($(".subnav"), t) {
+      case "hover":
+        for (e.find(".subnav").width(navWidth).css({
+            overflow:"visible"
+        }),  
+		 TweenMax.to(e, .35, {
+            backgroundColor:"#fff",
+            ease:"Expo.easeOut"
+        }), TweenMax.to(e.children("a"), .35, {
+            backgroundPosition:"center 0px",
+            ease:"Expo.easeOut"
+        }), $i = 0; n >= $i; $i++) TweenMax.fromTo(e.find("li").eq($i), .45, {
+            rotationX:180,
+            height:0
+        }, {
+            delay:.25 * $i,
+            rotationX:0,
+            height:o,
+            ease:"Expo.easeOut"
+        }), TweenMax.to(e.find("li").eq($i).children(".after"), .55, {
+            delay:.15 * $i,
+            opacity:0
+        });
+       /* categorizr.isDesktop &&*/ (e.find("li").on($mouseEventHover, function() {
+            subnavLi($(this), "hover");
+        }), e.find("li").on($mouseEventOut, function() {
+            subnavLi($(this), "out");
+        }), e.find("li").on($mouseEventClick, function() {
+            var e = $(this).attr("class"), t = 300;
+            "france" == e && (t = 500), TweenMax.to($(window), 1.3, {
+                scrollTo:{
+                    //y:$("#" + e).position().top + t
+					 y:$("[name=" + e+"]").position().top +t/2
+                },
+                ease:Expo.easeInOut
+            });
+        }));
+        break;
+		
+		 case "home":
+        for (e.find(".subnav").width(177).css({
+            overflow:"visible"
+        }), TweenMax.to(e, .35, {
+            backgroundColor:"#fff",
+            ease:"Expo.easeOut"
+        }), TweenMax.to(e.children("a"), .35, {
+            backgroundPosition:"center 0px",
+            ease:"Expo.easeOut"
+        }), $i = 0; n >= $i; $i++) TweenMax.fromTo(e.find("li").eq($i), .45, {
+            rotationX:180,
+            height:0
+        }, {
+            delay:.25 * $i,
+            rotationX:0,
+            height:o,
+            ease:"Expo.easeOut"
+        }), TweenMax.to(e.find("li").eq($i).children(".after"), .55, {
+            delay:.15 * $i,
+            opacity:0
+        });
+        categorizr.isDesktop && (e.find("li").on($mouseEventHover, function() {
+            subnavLi($(this), "hover");
+        }), e.find("li").on($mouseEventOut, function() {
+            subnavLi($(this), "out");
+        }), e.find("li").on($mouseEventClick, function() {
+            var e = $(this).attr("class"), t = 300;
+            "france" == e && (t = 500), TweenMax.to($(window), 1.3, {
+                scrollTo:{
+                    //y:$("#" + e).position().top + t
+					 y:$("[name=" + e+"]").position().top +t/2
+                },
+                ease:Expo.easeInOut
+            });
+        }));
+        break;
+		
+
+      case "out":
+	  
+	   
+	  
+        TweenMax.to(e, .85, {
+            backgroundColor:"#851B58",
+            ease:"Back.easeOut"
+        }), TweenMax.to(e.children("a"), .85, {
+            backgroundPosition:"center -22px",
+            ease:"Back.easeOut"
+        }), e.find(".subnav").width(0).css({
+            overflow:"hidden"
+        }), TweenMax.to(e.find("li"), 0, {
+            height:0,
+            rotationX:90
+        }), TweenMax.to(e.find("li").children(".after"), 0, {
+            opacity:1
+        });
+    }
+}
+/*
+//sub nav modification
+function subnav(e, t, o) {
+    var n = e.find("li").length;
     switch ($(".subnav"), t) {
       case "hover":
         for (e.find(".subnav").width(177).css({
@@ -164,6 +272,8 @@ function subnav(e, t, o) {
     }
 }
 
+///end sub nav 2 func
+*/
 function subnavLi(e, t) {
     switch (t) {
       case "hover":

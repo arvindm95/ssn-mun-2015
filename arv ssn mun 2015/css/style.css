@@ -225,7 +225,7 @@ h1 {
 
 #top-left-fixed-block {
 	 position: fixed !important;
-    width: 177px;
+    width: 200px;
     height: auto;
     text-align: center;
    
@@ -244,8 +244,9 @@ h1 {
     top: -35%;
 }
 #top-left-fixed-block .logo {
-    padding: 15px;
+    padding: 1px;
     background-color: #1d1d1d;
+	width:150px;
 }
 #top-left-fixed-block .logo img {
     opacity: 1;min-height:120px;
@@ -282,6 +283,15 @@ h1 {
 #top-left-fixed-block .navButton:nth-child(2) > a {
     background-image: url(../images/subnav-btn-menu.png);
 }
+#top-left-fixed-block .navButton:nth-child(2) {
+   position:absolute;
+   transform:rotateZ(-90deg);
+ 	left:140px;
+ 	width:71px;
+	height:50px;
+   top:10px;
+}
+
 #top-left-fixed-block .navButton:hover {
     cursor: pointer;
 }
@@ -307,7 +317,8 @@ h1 {
     perspective: 150px;
 }
 #top-left-fixed-block ul.subnav.share {
-    left: 0;
+    right:0;
+	
 }
 #top-left-fixed-block .subnav > li:nth-child(1) {
     background-color: #704663;
@@ -320,6 +331,7 @@ h1 {
 }
 #top-left-fixed-block .subnav.share > li {
     background-color: #851B58;
+	
 }
 #top-left-fixed-block .subnav > li {
     width: 100%;
@@ -359,6 +371,8 @@ h1 {
 #top-left-fixed-block .subnav.share h1 {
     font-size: 13px;
     font-size: 1.3rem;
+	transform:rotateZ(90deg);
+	margin-top:80px;
 }
 #top-left-fixed-block .subnav .logorub {
     margin-top: 15px;

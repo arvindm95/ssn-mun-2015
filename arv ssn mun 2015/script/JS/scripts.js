@@ -78,7 +78,7 @@ $(function() {
     $subnav = $(".subnav");
     $main = $("#main");
     $liHeightMenu = 120;
-    $liHeightShare = 97;
+    $liHeightShare = 180;
     $minHeightSubnav = 10;
     $controller = new ScrollMagic;
     $mouseEventOut = $mouseEventHover = $mouseEventClick = null;
@@ -112,7 +112,7 @@ $(function() {
         triggerHook: 0,
         duration: 5
     })).addTo($controller).on("start", function(b) {
-        "FORWARD" == b.scrollDirection && (animate_illustration("illustration_france", "start"), subnav($(".btn-menu"), "out", $liHeightMenu))
+        "FORWARD" == b.scrollDirection && (animate_illustration("illustration_france", "start"))
     }).on("end", function(b) {
         "REVERSE" == b.scrollDirection && (animate_illustration("illustration_france", "end"), animate_illustration("illustration_luxembourg", "end"), animate_illustration("illustration_belgique", "end"), $increment = 0)
     });
@@ -214,8 +214,7 @@ $(function() {
     (new ScrollScene({
         triggerElement: "#awards",
         triggerHook: .3,
-        duration: $(window).height() /
-            2
+        duration: $(window).height() / 2
     })).on("start", function(b) {
         $("#portfolio-details").hasClass("on") && $("#portfolio-details,#portfolio .prow, #top-left-fixed-block,.portfolio-tab,.portfolio-nav").removeClass("on")
     }).addTo($controller);
@@ -366,14 +365,48 @@ $(function() {
         adapt_mainPic_height();
         detectDevicesandScreens()
     });
-    categorizr.isDesktop && ($nav.on($mouseEventHover, function() {
+    
+	categorizr.isDesktop  && ($nav.on($mouseEventHover, function() {
+		//if(($(window).scrollTop()>=800)){
         $(this).hasClass("btn-menu") && $(this).find(".subnav").height() < $minHeightSubnav && subnav($(this), "hover", $liHeightMenu);
+		//alert($(window).scrollTop());
         $(this).hasClass("btn-share") && $(this).find(".subnav").height() < $minHeightSubnav && subnav($(this),
             "hover", $liHeightShare)
+			//}
     }), $nav.on($mouseEventOut, function() {
+		if(($(window).scrollTop()>=600)){
         $(this).hasClass("btn-menu") && subnav($(this), "out", $liHeightMenu);
-        $(this).hasClass("btn-share") && subnav($(this), "out", $liHeightShare) 
-    }));
+        $(this).hasClass("btn-share") && subnav($(this), "out", $liHeightShare)
+		}
+    }),$(window).on('load scroll',function(){
+		if(($(window).scrollTop()<=600)){
+			
+		// $nav.hasClass("btn-menu") && $nav.find(".subnav").height() < $minHeightSubnav && subnav($nav, "hover", $liHeightMenu);
+		$('.btn-menu').triggerHandler($mouseEventHover);
+		$('.btn-share').triggerHandler($mouseEventHover);
+		// alert('hi');
+		}
+		else{
+			//$nav.hasClass("btn-menu") && subnav($nav, "out", $liHeightMenu);
+			//$nav.trigger($mouseEventOut);
+			$('.btn-menu').trigger($mouseEventOut);
+			$('.btn-share').trigger($mouseEventOut);
+			}
+		})/*,$(window).scroll(function(){
+			
+			if(($(window).scrollTop()>=800)){
+				$('.btn-menu').trigger($mouseEventOut);
+				}
+				else{
+					$('.btn-menu').trigger($mouseEventHover);
+					}
+			
+			})
+		*/
+	
+	);
+	
+	
     if (categorizr.isTablet || categorizr.isMobile) $nav.on($mouseEventClick, function() {
         $(this).hasClass("openSubNav") ? (subnav($(this), "out", 0), $(this).removeClass("openSubNav")) : (subnav($(this), "hover", 130), $(this).addClass("openSubNav"))
     }), $nav.find("li").on("tap", function() {
